@@ -29,7 +29,7 @@ On macOS, Apple Clang may require a separate OpenMP installation and a compiler 
 - `benchmarks/`: future performance evaluation code
 - `results/`: future benchmark output
 
-The current prototype renders one sprinkler and ballistic water droplets in 2D. OpenGL rendering, 3D characters, OpenMP particle updates, and benchmarks are not implemented yet.
+The current prototype renders one sprinkler with two ballistic streams sweeping uniformly in opposite directions, projected into 2D. OpenGL rendering, 3D characters, OpenMP particle updates, and benchmarks are not implemented yet.
 
 ## Run and save a video
 
