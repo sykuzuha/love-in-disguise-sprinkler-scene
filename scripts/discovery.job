@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=sprinkler-scene
+#SBATCH --partition=main
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=2G
+#SBATCH --time=00:10:00
+
+set -euo pipefail
+cd "${SLURM_SUBMIT_DIR:?Submit this job from the project directory}"
+./scripts/run.sh
