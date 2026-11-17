@@ -9,7 +9,7 @@ Requirements: CMake 3.16 or newer and a C++17 compiler.
 ```sh
 cmake -S . -B build
 cmake --build build
-./build/sprinkler_scene
+./scripts/run.sh
 ```
 
 OpenMP and OpenGL integration can be enabled independently when their development libraries are available:
@@ -29,7 +29,7 @@ On macOS, Apple Clang may require a separate OpenMP installation and a compiler 
 - `benchmarks/`: future performance evaluation code
 - `results/`: future benchmark output
 
-This scaffold does not yet implement the simulation, rendering, or benchmarks.
+The current prototype renders one sprinkler and ballistic water droplets in 2D. OpenGL rendering, 3D characters, OpenMP particle updates, and benchmarks are not implemented yet.
 
 ## Run and save a video
 
@@ -39,7 +39,7 @@ With a C++17 compiler and FFmpeg installed, run:
 ./scripts/run.sh
 ```
 
-The script builds and runs the starter program and writes `results/sprinkler_scene.mp4`. The video is a five-second blank placeholder; the sprinkler simulation and scene rendering have not been implemented yet. Running the script again replaces the previous video. FFmpeg must include the `libx264` encoder.
+The script builds and runs the sprinkler prototype and writes a five-second video to `results/sprinkler_scene.mp4`. It streams generated frames directly to FFmpeg and does not require a display. Running the script again replaces the previous video. FFmpeg must include the `libx264` encoder.
 
 ## Submit a job on USC Discovery
 
@@ -51,6 +51,6 @@ From the project directory, submit the job with:
 ./scripts/submit.sh
 ```
 
-To use a specific project account, run `./scripts/submit.sh --account=YOUR_PROJECT_ID`. Additional `sbatch` options can also be passed to the script. The job requests one CPU on the `main` partition, 2 GB of memory, and ten minutes. Once it finishes, the placeholder video is saved to `results/sprinkler_scene.mp4`; job output and errors are saved to `results/slurm-JOBID.out`. Check progress with `squeue --me`. Each run replaces the same video, so avoid running multiple jobs at once in the same project directory.
+To use a specific project account, run `./scripts/submit.sh --account=YOUR_PROJECT_ID`. Additional `sbatch` options can also be passed to the script. The job requests one CPU on the `main` partition, 2 GB of memory, and ten minutes. Once it finishes, the video is saved to `results/sprinkler_scene.mp4`; job output and errors are saved to `results/slurm-JOBID.out`. Check progress with `squeue --me`. Each run replaces the same video, so avoid running multiple jobs at once in the same project directory.
 
 Discovery execution has not been tested from this environment. See [USC's running jobs guide](https://www.carc.usc.edu/user-guides/hpc-systems/using-our-hpc-systems/running-jobs) for accounts and job monitoring.

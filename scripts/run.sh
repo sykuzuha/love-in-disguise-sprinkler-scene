@@ -15,11 +15,9 @@ fi
 
 mkdir -p build results
 c++ -std=c++17 -O2 src/main.cpp -o build/sprinkler_scene
-./build/sprinkler_scene
-
-# The scene is not implemented yet; create a blank placeholder video.
-ffmpeg -hide_banner -loglevel error -y \
-    -f lavfi -i 'color=c=0x17283b:s=1280x720:r=30:d=5' \
+# Stream RGB frames directly to FFmpeg so no display or temporary frames are needed.
+./build/sprinkler_scene | ffmpeg -hide_banner -loglevel error -y \
+    -f rawvideo -pixel_format rgb24 -video_size 960x540 -framerate 30 -i pipe:0 \
     -c:v libx264 -pix_fmt yuv420p -movflags +faststart results/sprinkler_scene.mp4
 
-echo "Saved placeholder video to results/sprinkler_scene.mp4"
+echo "Saved video to results/sprinkler_scene.mp4"
